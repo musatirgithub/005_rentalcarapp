@@ -39,6 +39,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('__debug__/', include('debug_toolbar.urls')),
     path('users/', include('users.urls')),
+    path('api/', include('car.urls')),
 
     # Url paths for swagger:
     path("swagger(<format>\.json|\.yaml)",
