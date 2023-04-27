@@ -20,13 +20,16 @@ class Car(models.Model):
 
 
 class Reservation(models.Model):
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='reservations_user')
+    customer = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='reservations_customer')
     car = models.ForeignKey(Car, on_delete=models.CASCADE,
                             related_name='reservations_car')
     start_date = models.DateField()
     end_date = models.DateField()
 
     class Meta:
-        constraints = models.UniqueConstraint(
-            fields=('user', 'start_date', 'end_date'), name='same_res_notallowed')
+        constraints = [
+            models.UniqueConstraint(
+                fields=['customer', 'start_date', 'end_date'], name='user_rent_date'
+            )
+        ]
