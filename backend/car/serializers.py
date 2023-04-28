@@ -26,12 +26,15 @@ class CarSerializer(serializers.ModelSerializer):
 
 class ReservationSerializer(serializers.ModelSerializer):
     total_price = serializers.SerializerMethodField()
+    customer = serializers.StringRelatedField()
+    customer_id = serializers.IntegerField()
 
     class Meta:
         model = Reservation
         fields = (
             'id',
             'customer',
+            'customer_id',
             'car',
             'start_date',
             'end_date',
