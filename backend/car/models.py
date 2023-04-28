@@ -18,6 +18,9 @@ class Car(models.Model):
     rent_per_day = models.DecimalField(max_digits=6, decimal_places=2)
     is_available = models.BooleanField()
 
+    def __str__(self) -> str:
+        return f"{self.brand} {self.model}: {self.plate_number}"
+
 
 class Reservation(models.Model):
     customer = models.ForeignKey(
@@ -33,3 +36,6 @@ class Reservation(models.Model):
                 fields=['customer', 'start_date', 'end_date'], name='user_rent_date'
             )
         ]
+
+    def __str__(self):
+        return f"{self.car.model}: {self.start_date} - {self.end_date}"
